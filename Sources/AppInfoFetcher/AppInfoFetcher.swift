@@ -15,14 +15,8 @@ public enum AppInfoFetcherError: Error {
 
 public final class AppInfoFetcher {
     
-    var session: URLSession
-    lazy var defaultCountryCode: String = {
-        guard let isoCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String else {
-            return "US"
-        }
-        return isoCode
-    }()
-    
+    /// Default AppInfoFetcher initialiser
+    /// - Parameter useCache: Cache the fetched results, if cached the data for a specific bundle ID is retained indefinitelly
     public init(useCache: Bool) {
         let config = URLSessionConfiguration.default
         if useCache {
@@ -35,9 +29,18 @@ public final class AppInfoFetcher {
 
         session = URLSession.init(configuration: config)
     }
+    
+    /// Delete the current URLSession cache
+    public func flushCache() {
+        session.configuration.urlCache = nil
+    }
 
+    /// Fetch all the app metadata from apps tore connect.
+    /// - Parameters:
+    ///   - bundleIdentifier: The app bundle identifier
+    ///   - countryCode: The contry code for the request, different country can have different data
+    ///   - completionHandler: The operation completion handler
     public func fetchInfo(bundleIdentifier: String, countryCode: String? = nil, completionHandler: @escaping (Result<[AppInfo]?, Error>) -> Void ) {
-
         let iso639_1 = countryCode ?? self.defaultCountryCode
         guard let url = AppStoreConnectAPIURL(bundleID: bundleIdentifier, countryCode: iso639_1).url else {
             completionHandler(.failure(AppInfoFetcherError.invalidBundleIdentifier))
@@ -59,6 +62,16 @@ public final class AppInfoFetcher {
         task.resume()
     }
 
+    //MARK: - Private
+    
+    var session: URLSession
+    lazy var defaultCountryCode: String = {
+        guard let isoCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String else {
+            return "US"
+        }
+        return isoCode
+    }()
+    
     func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (Result<T?, Error>) -> Void) -> URLSessionDataTask {
         return session.dataTask(with: url) { data, response, error in
             if let error = error {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class LookupResult: Codable {
+class LookupResult: Codable {
     let resultCount: Int?
     let appInfo: [AppInfo]?
     
