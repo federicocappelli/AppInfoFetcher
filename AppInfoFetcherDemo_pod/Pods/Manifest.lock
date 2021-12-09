@@ -1,0 +1,16 @@
+PODS:
+  - AppInfoFetcher (0.1.0)
+
+DEPENDENCIES:
+  - AppInfoFetcher (from `../`)
+
+EXTERNAL SOURCES:
+  AppInfoFetcher:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AppInfoFetcher: cfd49369cd960e8d5147d003d0aa332f0f854fb9
+
+PODFILE CHECKSUM: e394975f5ebe4c3b2113505d2eae68f313af7bf6
+
+COCOAPODS: 1.11.2

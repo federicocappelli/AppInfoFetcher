@@ -1,0 +1,6 @@
+framework module AppInfoFetcher {
+  umbrella header "AppInfoFetcher-umbrella.h"
+
+  export *
+  module * { export * }
+}
