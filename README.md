@@ -28,7 +28,11 @@ pod 'AppInfoFetcher'
 
 ### Swift package manager
 
-Add you github account to Xcode and search for `AppInfoFetcher` or ...
+Add you github account to Xcode and search for `AppInfoFetcher` or add it directly:
+
+```
+git@github.com:federicocappelli/AppInfoFetcher.git
+```
 
 
 ## Usage
