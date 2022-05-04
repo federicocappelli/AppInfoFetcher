@@ -14,7 +14,7 @@ Given an app's bundle identifier the library returns all the app's metadata in a
 
 ## Example
 
-Example preojects are available for **Cocoapods** and **SPM**
+**AppInfoFetcher** is available as **Cocoapod** and **Swift Package** and the repository contains example projects for both with a rudimentary UI compatible with iOS, iPadOS and macOS.
 
 ![AppInfoFetcher macOS example app](Screenshots/screenshot1.png)  ![AppInfoFetcher example app](Screenshots/screenshot2.png)
 

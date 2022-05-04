@@ -39,7 +39,7 @@ public final class AppInfoFetcher {
     /// - Parameters:
     ///   - bundleIdentifier: The app bundle identifier
     ///   - countryCode: The contry code for the request, different country can have different data
-    ///   - completionHandler: The operation completion handler
+    ///   - completionHandler: The operation completion handler, returns a `Result` with an array of `AppInfo` in case of success or an error in case of failure
     public func fetchInfo(bundleIdentifier: String, countryCode: String? = nil, completionHandler: @escaping (Result<[AppInfo]?, Error>) -> Void ) {
         let iso639_1 = countryCode ?? self.defaultCountryCode
         guard let url = AppStoreConnectAPIURL(bundleID: bundleIdentifier, countryCode: iso639_1).url else {
